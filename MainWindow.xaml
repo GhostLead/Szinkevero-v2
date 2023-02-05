@@ -98,7 +98,7 @@
                  Background="LightGoldenrodYellow" 
                  Grid.ColumnSpan="2" 
                  Margin="5" 
-                 Grid.Row="4" />
+                 Grid.Row="4" SelectionChanged="lbSzinek_SelectionChanged" />
 
         <Rectangle Grid.ColumnSpan="2" 
                    Grid.Row="5" 

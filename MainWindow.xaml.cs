@@ -61,11 +61,24 @@ namespace WpfApp5
             red = Convert.ToByte(sliPiros.Value);
             green = Convert.ToByte(sliZold.Value);
             blue = Convert.ToByte(sliKek.Value);
-
-            // Ellenőrzés -- van e már ilyen elem a listában
-
             string szinAdatok = $"{red};{green};{blue}";
-            lbSzinek.Items.Add(szinAdatok);
+
+            List<string> lbSzinekItems = new List<string>();
+
+            foreach (var item in lbSzinek.Items)
+            {
+                lbSzinekItems.Add(item.ToString());
+            }
+
+            if (lbSzinekItems.Contains(szinAdatok))
+            {
+                MessageBox.Show("Már van ilyen színed!");
+            }
+            else
+            {
+                lbSzinek.Items.Add(szinAdatok);
+            }
+
         }
 
         private void btnTorol_Click(object sender, RoutedEventArgs e)
@@ -84,6 +97,15 @@ namespace WpfApp5
         private void btnUrit_Click(object sender, RoutedEventArgs e)
         {
             lbSzinek.Items.Clear();
+        }
+
+        private void lbSzinek_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string[] tagok = lbSzinek.SelectedItem.ToString().Split(';');
+
+            sliPiros.Value = Convert.ToInt32(tagok[0]);
+            sliZold.Value = Convert.ToInt32(tagok[1]);
+            sliKek.Value = Convert.ToInt32(tagok[2]);
         }
 
         // Listadoboz elemére kattintva a slider felveszi a megfelelő értékeket
